@@ -1,13 +1,17 @@
 const userDb = require("../database/index");
 const { ErrorHandler } = require("../../../helpers/error");
 const constants = require("../../../constants");
+const argon2 = require("argon2");
 
 module.exports = async (req, res, next) => {
-    const result = await userDb.addUser(req.body);
+    const data = { ...req.body };
+    data.Password = await argon2.hash(data.Password);
+    data.Email = (data.Email + "").toLowerCase();
+    const result = await userDb.addUser(data);
 
     if (result != null) {
-        const errorCreatingUser = new ErrorHandler(constants.ERRORS.DATABASE, {
-            statusCode : 500,
+        const errorCreatingUser = new ErrorHandler(constants.ERRORS.INPUT, {
+            statusCode : 400,
             message : "Error Inserting User Data",
             errStack : result
         });

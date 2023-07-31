@@ -28,6 +28,11 @@ const UserModel = new Schema({
         unique : true
     },
 
+    Password : {
+        type : String,
+        required:true
+    },
+
     isEmailVerified : {
         type : Boolean,
         default : false

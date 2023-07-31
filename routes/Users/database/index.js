@@ -7,6 +7,21 @@ const addUser = async (data) => {
     return null;
 }
 
+const getUserByEmail = async (data) => {
+    const result = await userModel.find({ Email : data });
+    return result;
+}
+
+const updateUserDetails = async (data, email) => {
+    const [ err, result ] = await to(userModel.findOneAndUpdate({ email : email }, { $set :  data}));
+
+    if (err) {
+        return false;
+    }
+
+    return true;
+}
+
 module.exports = {
-    addUser
+    addUser, getUserByEmail, updateUserDetails
 }
