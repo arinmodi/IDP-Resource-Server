@@ -11,11 +11,16 @@ const post = require("./controllers/post");
 const requestEmailVerification = require("./controllers/requestEmailVerification");
 const verifyEmail = require("./controllers/verifyEmail");
 const uploadProfilePhoto = require("./controllers/uploadProfilePhoto");
+const forgotPassword = require("./controllers/forgotPassword");
+const resetPassword = require("./controllers/resetPassword");
 
 router.post("/", validator(createUserSchema), post);
 router.post("/login", validator(loginUserSchema), login);
-router.post("/requestEmailVerification", validator(onlyEmailSchema), requestEmailVerification);
 router.post("/uploadImage", multer().array("image", 1), uploadProfilePhoto);
+router.post("/requestEmailVerification", validator(onlyEmailSchema), requestEmailVerification);
+router.post("/forgotPassword", validator(onlyEmailSchema), forgotPassword);
+router.post("/resetPassword", resetPassword);
+
 
 router.get("/verifyEmail", authMiddlewareForEmailVerification, verifyEmail);
 
