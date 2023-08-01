@@ -28,6 +28,12 @@ const UserModel = new Schema({
         unique : true
     },
 
+    ProfilePhoto : {
+        type : String,
+        trim : true,
+        required : true
+    },
+
     Password : {
         type : String,
         required:true

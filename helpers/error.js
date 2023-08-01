@@ -1,4 +1,5 @@
 const utils = require('./utils');
+const multer = require("multer");
 
 class ErrorHandler extends Error {
     constructor(errorType, error) {
@@ -12,7 +13,12 @@ class ErrorHandler extends Error {
 }
 
 const errorHandler = (err, _req, res, _next) => {
-    res.status(err.statusCode).json(err);
+    if (err instanceof multer.MulterError) {
+        console.log(err);
+        return res.status(418).json(err);
+      } else {
+        return res.status(err.statusCode).json(err);
+    }
 };
 
 module.exports = { ErrorHandler, errorHandler };
