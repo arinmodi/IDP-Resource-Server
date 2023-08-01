@@ -1,6 +1,7 @@
 const userDb = require("../database/index");
-const { ErrorHandler } = require("../../../helpers/error");
+
 const constants = require("../../../constants");
+const { ErrorHandler } = require("../../../helpers/error");
 const { generateJWT } = require("../../../middleware/authMiddleware");
 const { sendEmail } = require("../../utilities/sendEmail");
 

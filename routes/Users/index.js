@@ -1,7 +1,7 @@
 const router = require("express").Router({ mergeParams : true });
 const multer = require("multer");
 
-const { authMiddlewareForEmailVerification } = require("../../middleware/authMiddleware");
+const { authMiddlewareForEmailVerification, authMiddlewareForLogin } = require("../../middleware/authMiddleware");
 const validator = require("../../middleware/validator");
 
 const { createUserSchema, loginUserSchema, onlyEmailSchema } = require("./@validationSchemas");
@@ -13,6 +13,7 @@ const verifyEmail = require("./controllers/verifyEmail");
 const uploadProfilePhoto = require("./controllers/uploadProfilePhoto");
 const forgotPassword = require("./controllers/forgotPassword");
 const resetPassword = require("./controllers/resetPassword");
+const getMySelf = require("./controllers/getMySelf");
 
 router.post("/", validator(createUserSchema), post);
 router.post("/login", validator(loginUserSchema), login);
@@ -23,5 +24,6 @@ router.post("/resetPassword", resetPassword);
 
 
 router.get("/verifyEmail", authMiddlewareForEmailVerification, verifyEmail);
+router.get("/mySelf", authMiddlewareForLogin, getMySelf);
 
 module.exports = router;

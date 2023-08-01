@@ -13,8 +13,8 @@ module.exports = async (req, res, next) => {
     if (data.length > 0) {
         if (await argon2.verify(data[0].Password, Password) ) {
             const payLoad = {
-                name : data.FirstName + " " + data.LastName,
-                email : data.Email
+                name : data[0].FirstName + " " + data[0].LastName,
+                email : data[0].Email
             }
 
             const jwtToken = generateJWT(payLoad, process.env.JWT_SECRET_AUTH, "1d");
