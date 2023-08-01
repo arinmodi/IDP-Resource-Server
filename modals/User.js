@@ -52,6 +52,11 @@ const UserModel = new Schema({
     Access : {
         type : Array,
         default : []
+    },
+
+    isDeleted : {
+        type : Boolean,
+        default : false
     }
 });
 

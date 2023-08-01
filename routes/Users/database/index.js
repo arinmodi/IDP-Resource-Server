@@ -8,7 +8,7 @@ const addUser = async (data) => {
 }
 
 const getUserByEmail = async (data) => {
-    const result = await userModel.find({ Email : data });
+    const result = await userModel.find({ Email : data, isDeleted : false });
     return result;
 }
 
