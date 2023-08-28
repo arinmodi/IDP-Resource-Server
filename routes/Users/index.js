@@ -17,6 +17,7 @@ const getMySelf = require("./controllers/getMySelf");
 const updateMyProfile = require("./controllers/updateMyProfile");
 const deleteAccount = require("./controllers/deleteAccount");
 const addAccessHistory = require("./controllers/addAccessHistory");
+const getAccessHistory = require("./controllers/getAccessHistory");
 
 router.post("/", validator(createUserSchema), post);
 router.post("/login", validator(loginUserSchema), login);
@@ -28,6 +29,7 @@ router.post("/addAccessHistory", authMiddlewareForLogin, validator(addAccessHist
 
 router.get("/verifyEmail", authMiddlewareForEmailVerification, verifyEmail);
 router.get("/mySelf", authMiddlewareForLogin, getMySelf);
+router.get("/myAccessHistory", authMiddlewareForLogin, getAccessHistory);
 
 router.patch("/mySelf", authMiddlewareForLogin, validator(updateProfileSchema), updateMyProfile);
 

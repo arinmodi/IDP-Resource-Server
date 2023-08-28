@@ -12,6 +12,12 @@ const getUserByEmail = async (data) => {
     return result;
 }
 
+const getUserAccessHistory = async (email) => {
+    const result = await userModel.find({ Email : email, isDeleted : false });
+    if (result[0].AccessHistory===undefined) return {}
+    return result[0].AccessHistory;
+}
+
 const updateUserDetails = async (data, email) => {
     const [ err, result ] = await to(userModel.findOneAndUpdate({ email : email }, { $set :  data}));
 
@@ -34,5 +40,5 @@ const addAccessHistory  = async (website, fields, email) => {
 }
 
 module.exports = {
-    addUser, getUserByEmail, updateUserDetails, addAccessHistory
+    addUser, getUserByEmail, updateUserDetails, addAccessHistory, getUserAccessHistory
 }
