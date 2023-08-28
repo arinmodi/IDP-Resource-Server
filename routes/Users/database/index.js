@@ -22,6 +22,17 @@ const updateUserDetails = async (data, email) => {
     return true;
 }
 
+const addAccessHistory  = async (website, fields, email) => {
+    const user =  await userModel.find({ Email : email, isDeleted : false });
+    if (user[0].AccessHistory===undefined) {
+        user[0].AccessHistory = {}
+    } 
+    user[0].AccessHistory.set(website, fields);
+    const [err] = await to(user[0].save());
+    if (err) return err;
+    return null;
+}
+
 module.exports = {
-    addUser, getUserByEmail, updateUserDetails
+    addUser, getUserByEmail, updateUserDetails, addAccessHistory
 }

@@ -49,9 +49,9 @@ const UserModel = new Schema({
         default : false
     },
 
-    Access : {
-        type : Array,
-        default : []
+    AccessHistory : {
+        type : Map,
+        of : String,
     },
 
     isDeleted : {
