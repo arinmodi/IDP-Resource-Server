@@ -21,7 +21,8 @@ module.exports = async (req, res, next) => {
 
             return res.status(200).send({
                 message : "Login Successfully...",
-                token : jwtToken
+                token : jwtToken,
+                emailStaus : data[0].isEmailVerified
             })
         }else {
             return next(new ErrorHandler(constants.ERRORS.INPUT, {

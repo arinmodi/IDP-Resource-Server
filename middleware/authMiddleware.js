@@ -54,9 +54,10 @@ const authMiddlewareForLogin = async (req, res, next) => {
 };
 
 const authMiddlewareForEmailVerification = async (req, res, next) => {
-    const [err, token] = await to(getTokenFromUrl(req));
+    const [err, token] = await to(getTokenFromHeader(req));
     if (err) {
       next(err);
+      return;
     }
   
     const [err2, payload] = await to(verifyToken(token, process.env.JWT_SECRET_EMAIL));

@@ -31,7 +31,6 @@ const UserModel = new Schema({
     ProfilePhoto : {
         type : String,
         trim : true,
-        required : true
     },
 
     Password : {
