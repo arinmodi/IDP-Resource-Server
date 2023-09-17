@@ -19,7 +19,7 @@ const getUserAccessHistory = async (email) => {
 }
 
 const updateUserDetails = async (data, email) => {
-    const [ err, result ] = await to(userModel.findOneAndUpdate({ email : email }, { $set :  data}));
+    const [ err, result ] = await to(userModel.findOneAndUpdate({ Email : email }, { $set :  data}));
 
     if (err) {
         return false;

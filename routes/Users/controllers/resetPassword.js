@@ -26,7 +26,9 @@ module.exports = async (req, res, next) => {
 
     const { Email } = payload;
 
-    const result = await userDb.updateUserDetails({ Password : await argon2.hash(req.body.password) }, Email);
+    const Password =  await argon2.hash(req.body.password)
+
+    const result = await userDb.updateUserDetails({ Password : Password }, Email);
 
     if (!result) {
         return next(new ErrorHandler(constants.ERRORS.UNEXPECTED, {
@@ -34,6 +36,8 @@ module.exports = async (req, res, next) => {
             message : "Unexpected DB Error"
         }));
     }
+
+    console.log("success");
 
     return res.status(200).send({
         message : "Password Reset Success"
