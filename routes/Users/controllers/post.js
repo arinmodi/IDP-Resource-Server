@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
 
         return next(errorCreatingUser);
     }
-
+    console.log(result)
     return res.status(200).send({
         message : "Successfully Added The User. Thank You."
     });
