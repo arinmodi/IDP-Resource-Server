@@ -31,7 +31,6 @@ const UserModel = new Schema({
     ProfilePhoto : {
         type : String,
         trim : true,
-        required : true
     },
 
     Password : {
@@ -49,9 +48,9 @@ const UserModel = new Schema({
         default : false
     },
 
-    Access : {
-        type : Array,
-        default : []
+    AccessHistory : {
+        type : Map,
+        of : String,
     },
 
     isDeleted : {

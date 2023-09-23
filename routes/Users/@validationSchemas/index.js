@@ -5,8 +5,7 @@ const createUserSchema = Joi.object({
     LastName : Joi.string().min(2).max(20).required(),
     Email : Joi.string().min(5).max(40).required(),
     ContactNo : Joi.string().min(10).max(10).required(),
-    Password : Joi.string().min(8).max(15).required(),
-    ProfilePhoto : Joi.string().uri().required()
+    Password : Joi.string().min(8).max(15).required()
 });
 
 const updateProfileSchema = Joi.object({
@@ -14,7 +13,6 @@ const updateProfileSchema = Joi.object({
     LastName : Joi.string().min(2).max(20),
     ContactNo : Joi.string().min(10).max(10),
     ProfilePhoto : Joi.string().uri(),
-    Access : Joi.array()
 });
 
 const loginUserSchema = Joi.object({
@@ -26,6 +24,11 @@ const onlyEmailSchema = Joi.object({
     Email : Joi.string().min(5).max(40).required()
 });
 
+const addAccessHistorySchema = Joi.object({
+    website : Joi.string().required(),
+    access : Joi.array().min(1).max(7).required()
+})
+
 module.exports = {
-    createUserSchema, loginUserSchema, onlyEmailSchema, updateProfileSchema
+    createUserSchema, loginUserSchema, onlyEmailSchema, updateProfileSchema, addAccessHistorySchema
 }

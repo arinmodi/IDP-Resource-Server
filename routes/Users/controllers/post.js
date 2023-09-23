@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     if (result != null) {
         const errorCreatingUser = new ErrorHandler(constants.ERRORS.INPUT, {
             statusCode : 400,
-            message : "Error Inserting User Data",
+            message : "May be user already exists",
             errStack : result
         });
 
