@@ -12,6 +12,7 @@ module.exports = async (req, res, next) => {
         return res.status(200).send({
             data : details
         });
+        
     }catch(error) {
         return next(new ErrorHandler(constants.ERRORS.UNEXPECTED, {
             statusCode : 500,
