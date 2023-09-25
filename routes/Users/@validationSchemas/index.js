@@ -27,8 +27,13 @@ const onlyEmailSchema = Joi.object({
 const addAccessHistorySchema = Joi.object({
     website : Joi.string().required(),
     access : Joi.array().min(1).max(7).required()
-})
+});
+
+const generateAccessToken = Joi.object({
+    token : Joi.string().required(),
+    requirements : Joi.array().min(1).max(7).required()
+});
 
 module.exports = {
-    createUserSchema, loginUserSchema, onlyEmailSchema, updateProfileSchema, addAccessHistorySchema
+    createUserSchema, loginUserSchema, onlyEmailSchema, updateProfileSchema, addAccessHistorySchema, generateAccessToken
 }

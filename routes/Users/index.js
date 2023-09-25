@@ -18,6 +18,9 @@ const updateMyProfile = require("./controllers/updateMyProfile");
 const deleteAccount = require("./controllers/deleteAccount");
 const addAccessHistory = require("./controllers/addAccessHistory");
 const getAccessHistory = require("./controllers/getAccessHistory");
+const { serverValidator } = require("../../middleware/serverValidator");
+const generateAccessToken = require("./controllers/generateAccessToken");
+const grantProfile = require("./controllers/grantProfile");
 
 router.post("/", validator(createUserSchema), post);
 router.post("/login", validator(loginUserSchema), login);
@@ -34,5 +37,10 @@ router.get("/myAccessHistory", authMiddlewareForLogin, getAccessHistory);
 router.patch("/mySelf", authMiddlewareForLogin, validator(updateProfileSchema), updateMyProfile);
 
 router.delete("/mySelf", authMiddlewareForLogin, deleteAccount);
+
+// server routes
+
+router.post("/accessToken", serverValidator, generateAccessToken);
+router.post("/grantProfile", grantProfile);
 
 module.exports = router;
