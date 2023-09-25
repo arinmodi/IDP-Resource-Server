@@ -5,7 +5,7 @@ const { ErrorHandler } = require("../../../helpers/error");
 
 module.exports = async (req, res, next) => {
     if (Object.keys(req.body).length > 0) {
-        const email = res.locals.decode;
+        const email = res.locals.decode.email;
 
         if (Object.keys(req.body).includes("ContactNo")) {
             req.body.isContactNoVerified = false;
