@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     const fields = req.body.access;
     let website = req.body.website+"";
 
-    website = website.replace(".", "__dot__")
+    website = website.replace(/\./g, "__dot__")
 
     const fs = fields.join(", ");
 
